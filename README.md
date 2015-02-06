@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stackbuilders/atomic-write.svg?branch=master)](https://travis-ci.org/stackbuilders/atomic-write)
+
 # Atomic Write
 
 Atomic Write assists with atomic modification of files using
