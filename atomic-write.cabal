@@ -14,6 +14,7 @@ description:
   .
   * If an original file exists, take those permissions and apply them to the
     temp file before `mv`ing the file into place.
+  .
   * If the original file does not exist, create a following with default
     permissions (based on the currently-active umask).
   .
@@ -24,7 +25,9 @@ description:
   Ruby and Python:
   .
   * <http://apidock.com/rails/File/atomic_write/class Ruby on Rails includes a similar method called atomic_write>
+  .
   * <https://github.com/chef/chef/blob/c4631816132fcfefaba3d123a1d0dfe8bc2866bb/lib/chef/file_content_management/deploy/mv_unix.rb#L23:L71 Chef includes atomic update functionality>
+  .
   * <https://github.com/sashka/atomicfile There is a python library for atomically updating a file>
   .
   Note that at this time Windows is not supported, however we would appreciate
