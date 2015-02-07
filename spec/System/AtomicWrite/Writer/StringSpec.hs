@@ -1,16 +1,16 @@
-{-# LANGUAGE OverloadedStrings #-}
-
-module System.AtomicWriteSpec (spec) where
+module System.AtomicWrite.Writer.StringSpec (spec) where
 
 import Test.Hspec (it, describe, shouldBe, Spec)
 
-import System.AtomicWrite (atomicWriteFile)
+import System.AtomicWrite.Writer.String (atomicWriteFile)
 
 import System.IO.Temp (withSystemTempDirectory)
 import System.FilePath.Posix (joinPath)
 import System.Posix.Files
   (setFileMode, setFileCreationMask, getFileStatus, fileMode)
 
+
+{-# ANN module "HLint: ignore Reduce duplication" #-}
 
 spec :: Spec
 spec = describe "atomicWriteFile" $ do
@@ -28,8 +28,7 @@ spec = describe "atomicWriteFile" $ do
 
     it "preserves the permissions of original file, regardless of umask" $
       withSystemTempDirectory "atomicFileTest" $ \tmpDir -> do
-        let
-            filePath     = joinPath [tmpDir, "testFile"]
+        let filePath = joinPath [tmpDir, "testFile"]
 
         writeFile filePath "initial contents"
         setFileMode filePath 0o100644
@@ -50,6 +49,9 @@ spec = describe "atomicWriteFile" $ do
         atomicWriteFile filePath "new contents"
 
         resultStat <- getFileStatus filePath
+
+        -- reset mask to not break subsequent specs
+        _ <- setFileCreationMask 0o100022
 
         -- Fails when using atomic mv command unless apply perms on initial file
         fileMode resultStat `shouldBe` 0o100644
@@ -74,6 +76,9 @@ spec = describe "atomicWriteFile" $ do
         atomicWriteFile filePath "new contents"
 
         resultStat <- getFileStatus filePath
+
+        -- reset mask to not break subsequent specs
+        _ <- setFileCreationMask 0o100022
 
         -- The default tempfile permissions are 0600, so this fails unless we
         -- make sure that the default umask is relied on for creation of the

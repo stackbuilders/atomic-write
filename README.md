@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/stackbuilders/atomic-write.svg?branch=master)](https://travis-ci.org/stackbuilders/atomic-write)
+[![Build Status](https://travis-ci.org/stackbuilders/atomic-write.svg?branch=master)](https://travis-ci.org/stackbuilders/atomic-write) [![Hackage](https://img.shields.io/hackage/v/atomic-write.svg)](http://hackage.haskell.org/package/atomic-write)
 
 # Atomic Write
 

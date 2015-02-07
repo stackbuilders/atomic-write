@@ -30,8 +30,18 @@ description:
   .
   * <https://github.com/sashka/atomicfile There is a python library for atomically updating a file>
   .
-  Note that at this time Windows is not supported, however we would appreciate
+  At this time Windows is not supported, however we would appreciate
   contributions to the <http://github.com/stackbuilders/atomic-write github repository>.
+  .
+  To use `atomic-write`, import the module corresponding to the type you wish to
+  write atomically, e.g., to write a (strict) ByteString atomically:
+  .
+  > import System.AtomicWrite.Writer.ByteString
+  .
+  Then you can use the atomicWrite function that accepts a `FilePath` and a
+  `ByteString`, e.g.:
+  .
+  > atomicWrite myFilePath myByteString
 license:             MIT
 license-file:        LICENSE
 author:              Justin Leitgeb
@@ -39,18 +49,24 @@ maintainer:          justin@stackbuilders.com
 copyright:           2015 Stack Builders Inc.
 category:            System
 build-type:          Simple
--- extra-source-files:
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     System.AtomicWrite
-  -- other-modules:
-  -- other-extensions:
+  exposed-modules:       System.AtomicWrite.Writer.ByteString
+                       , System.AtomicWrite.Writer.ByteStringBuilder
+                       , System.AtomicWrite.Writer.LazyByteString
+                       , System.AtomicWrite.Writer.String
+                       , System.AtomicWrite.Writer.Text
+
+  other-modules:       System.AtomicWrite.Internal
+
   build-depends:         base >=4.5 && <4.8
                        , temporary
                        , unix
                        , directory
                        , filepath
+                       , text
+                       , bytestring >= 0.10.4
 
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -66,6 +82,8 @@ test-suite atomic-write-test
                      , unix
                      , directory
                      , filepath
+                     , text
+                     , bytestring >= 0.10.4
 
                      , hspec
 
