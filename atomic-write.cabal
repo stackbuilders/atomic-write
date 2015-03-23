@@ -1,5 +1,5 @@
 name:                atomic-write
-version:             0.2.0.2
+version:             0.2.0.3
 synopsis:            Atomically write to a file
 
 description:
