@@ -30,9 +30,6 @@ description:
   .
   * <https://github.com/sashka/atomicfile There is a python library for atomically updating a file>
   .
-  At this time Windows is not supported, however we would appreciate
-  contributions to the <http://github.com/stackbuilders/atomic-write github repository>.
-  .
   To use `atomic-write`, import the module corresponding to the type you wish to
   write atomically, e.g., to write a (strict) ByteString atomically:
   .
