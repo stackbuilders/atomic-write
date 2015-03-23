@@ -91,4 +91,4 @@ test-suite atomic-write-test
 
 source-repository head
   type:     git
-  location: https://github.com/stackbuilders/atomic-write
+  location: git@github.com:stackbuilders/atomic-write.git
