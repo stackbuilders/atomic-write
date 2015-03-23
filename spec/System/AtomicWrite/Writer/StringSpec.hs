@@ -5,8 +5,8 @@ import Test.Hspec (it, describe, shouldBe, Spec)
 import System.AtomicWrite.Writer.String (atomicWriteFile)
 
 import System.IO.Temp (withSystemTempDirectory)
-import System.FilePath.Posix (joinPath)
-import System.Posix.Files
+import System.FilePath (joinPath)
+import System.PosixCompat.Files
   (setFileMode, setFileCreationMask, getFileStatus, fileMode)
 
 

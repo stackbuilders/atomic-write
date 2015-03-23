@@ -63,7 +63,7 @@ library
 
   build-depends:         base >=4.5 && <4.8
                        , temporary
-                       , unix
+                       , unix-compat
                        , directory
                        , filepath
                        , text
@@ -80,7 +80,7 @@ test-suite atomic-write-test
 
   build-depends:       base >=4.5 && <4.8
                      , temporary
-                     , unix
+                     , unix-compat
                      , directory
                      , filepath
                      , text

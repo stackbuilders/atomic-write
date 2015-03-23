@@ -1,8 +1,8 @@
 module System.AtomicWrite.Internal (closeAndRename, tempFileFor) where
 
 import System.Directory (doesFileExist, renameFile)
-import System.Posix.Files (setFileMode, getFileStatus, fileMode)
-import System.FilePath.Posix (takeDirectory)
+import System.PosixCompat.Files (setFileMode, getFileStatus, fileMode)
+import System.FilePath (takeDirectory)
 
 import System.IO
   (hClose, Handle, openTempFile, openTempFileWithDefaultPermissions)
