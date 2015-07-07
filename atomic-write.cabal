@@ -58,7 +58,7 @@ library
 
   other-modules:       System.AtomicWrite.Internal
 
-  build-depends:         base >=4.5 && <4.8
+  build-depends:         base >= 4.5 && < 4.9
                        , temporary
                        , unix-compat
                        , directory
@@ -75,14 +75,13 @@ test-suite atomic-write-test
   hs-source-dirs: spec, src
   main-is: Spec.hs
 
-  build-depends:       base >=4.5 && <4.8
+  build-depends:       base >= 4.5 && < 4.9
                      , temporary
                      , unix-compat
                      , directory
                      , filepath
                      , text
                      , bytestring >= 0.10.4
-
                      , hspec
 
   default-language:    Haskell2010
