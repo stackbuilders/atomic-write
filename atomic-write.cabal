@@ -58,7 +58,7 @@ library
 
   other-modules:       System.AtomicWrite.Internal
 
-  build-depends:         base >= 4.5 && < 4.9
+  build-depends:         base >= 4.5 && < 5.0
                        , temporary
                        , unix-compat
                        , directory
@@ -75,7 +75,7 @@ test-suite atomic-write-test
   hs-source-dirs: spec, src
   main-is: Spec.hs
 
-  build-depends:       base >= 4.5 && < 4.9
+  build-depends:       base >= 4.5 && < 5.0
                      , temporary
                      , unix-compat
                      , directory
