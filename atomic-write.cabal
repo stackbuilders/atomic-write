@@ -68,24 +68,31 @@ library
 
   hs-source-dirs:      src
   default-language:    Haskell2010
-  ghc-options:         -Wall
+  ghc-options:         -Wall -Werror
+
 
 test-suite atomic-write-test
   type: exitcode-stdio-1.0
-  hs-source-dirs: spec, src
+  hs-source-dirs: spec
   main-is: Spec.hs
 
+  other-modules:       System.AtomicWrite.Writer.ByteStringSpec
+                     , System.AtomicWrite.Writer.ByteStringBuilderSpec
+                     , System.AtomicWrite.Writer.LazyByteStringSpec
+                     , System.AtomicWrite.Writer.StringSpec
+                     , System.AtomicWrite.Writer.TextSpec
+
   build-depends:       base >= 4.5 && < 5.0
+                     , atomic-write
                      , temporary
                      , unix-compat
-                     , directory
                      , filepath
                      , text
                      , bytestring >= 0.10.4
                      , hspec
 
   default-language:    Haskell2010
-  ghc-options:         -Wall
+  ghc-options:         -Wall -Werror
 
 
 source-repository head
