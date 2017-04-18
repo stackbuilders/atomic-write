@@ -85,7 +85,6 @@ test-suite atomic-write-test
                      , atomic-write
                      , temporary
                      , unix-compat
-                     , directory
                      , filepath
                      , text
                      , bytestring >= 0.10.4
