@@ -72,10 +72,17 @@ library
 
 test-suite atomic-write-test
   type: exitcode-stdio-1.0
-  hs-source-dirs: spec, src
+  hs-source-dirs: spec
   main-is: Spec.hs
 
+  other-modules:       System.AtomicWrite.Writer.ByteStringSpec
+                     , System.AtomicWrite.Writer.ByteStringBuilderSpec
+                     , System.AtomicWrite.Writer.LazyByteStringSpec
+                     , System.AtomicWrite.Writer.StringSpec
+                     , System.AtomicWrite.Writer.TextSpec
+
   build-depends:       base >= 4.5 && < 5.0
+                     , atomic-write
                      , temporary
                      , unix-compat
                      , directory
