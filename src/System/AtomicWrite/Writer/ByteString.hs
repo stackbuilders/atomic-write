@@ -10,17 +10,39 @@
 -- Provides functionality to dump the contents of a ByteString
 -- to a file.
 
-module System.AtomicWrite.Writer.ByteString (atomicWriteFile) where
+module System.AtomicWrite.Writer.ByteString (atomicWriteFile, atomicWriteFileWithMode) where
 
-import System.AtomicWrite.Internal (closeAndRename, tempFileFor)
+import System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode)
+
+import System.Posix.Types (FileMode)
 
 import Data.ByteString (ByteString, hPutStr)
 
--- | Creates a file atomically on POSIX-compliant systems while preserving
--- permissions.
+-- | Creates or modifies a file atomically on POSIX-compliant
+-- systems while preserving permissions.
 atomicWriteFile ::
   FilePath      -- ^ The path where the file will be updated or created
   -> ByteString -- ^ The content to write to the file
   -> IO ()
-atomicWriteFile f txt =
-  tempFileFor f >>= \(tmpPath, h) -> hPutStr h txt >> closeAndRename h tmpPath f
+atomicWriteFile = atomicWriteFileMaybeMode Nothing
+
+-- | Creates or modifies a file atomically on POSIX-compliant
+-- systems and updates permissions.
+atomicWriteFileWithMode ::
+  FileMode
+  -> FilePath      -- ^ The path where the file will be updated or created
+  -> ByteString -- ^ The content to write to the file
+  -> IO ()
+atomicWriteFileWithMode mode =
+  atomicWriteFileMaybeMode $ Just mode
+
+-- | Helper function
+atomicWriteFileMaybeMode ::
+  Maybe FileMode
+  -> FilePath      -- ^ The path where the file will be updated or created
+  -> ByteString -- ^ The content to write to the file
+  -> IO ()
+atomicWriteFileMaybeMode mmode path text =
+  tempFileFor path >>= \(tmpPath, h) -> hPutStr h text
+                    >> closeAndRename h tmpPath path
+                    >> maybeSetFileMode path mmode

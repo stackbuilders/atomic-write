@@ -10,22 +10,43 @@
 -- Provides functionality to dump the contents of a ByteStringBuilder
 -- to a file.
 
-module System.AtomicWrite.Writer.ByteStringBuilder (atomicWriteFile) where
+module System.AtomicWrite.Writer.ByteStringBuilder (atomicWriteFile, atomicWriteFileWithMode) where
 
-import System.AtomicWrite.Internal (closeAndRename, tempFileFor)
+import System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode)
 
 import Data.ByteString.Builder (hPutBuilder, Builder, hPutBuilder)
 
 import GHC.IO.Handle (hSetBinaryMode, hSetBuffering, BufferMode (BlockBuffering))
 
--- | Creates a file atomically on POSIX-compliant systems while preserving
--- permissions.
+import System.Posix.Types (FileMode)
+
+-- | Creates or modifies a file atomically on POSIX-compliant
+-- systems while preserving permissions.
 atomicWriteFile ::
   FilePath    -- ^ The path where the file will be updated or created
   -> Builder  -- ^ The content to write to the file
   -> IO ()
-atomicWriteFile f builder = do
-  (temppath, h) <- tempFileFor f
+atomicWriteFile =
+  atomicWriteFileMaybeMode Nothing
+
+-- | Creates or modifies a file atomically on POSIX-compliant
+-- systems and updates permissions.
+atomicWriteFileWithMode ::
+  FileMode
+  -> FilePath    -- ^ The path where the file will be updated or created
+  -> Builder  -- ^ The content to write to the file
+  -> IO ()
+atomicWriteFileWithMode mode =
+  atomicWriteFileMaybeMode $ Just mode
+
+-- Helper function
+atomicWriteFileMaybeMode ::
+  Maybe FileMode
+  -> FilePath    -- ^ The path where the file will be updated or created
+  -> Builder  -- ^ The content to write to the file
+  -> IO ()
+atomicWriteFileMaybeMode mmode path builder = do
+  (temppath, h) <- tempFileFor path
 
   -- Recommendations for binary and buffering are from the
   -- Data.ByteString.Builder docs:
@@ -35,4 +56,7 @@ atomicWriteFile f builder = do
 
   hPutBuilder h builder
 
-  closeAndRename h temppath f
+  closeAndRename h temppath path
+
+  -- set new permissions if a FileMode was provided
+  maybeSetFileMode path mmode
