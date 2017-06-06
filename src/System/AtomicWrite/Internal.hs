@@ -1,3 +1,15 @@
+-- |
+-- Module      :  Configuration.Dotenv.Parse
+-- Copyright   :  © 2015-2017 Stack Builders Inc.
+-- License     :  MIT
+--
+-- Maintainer  :  Stack Builders <hackage@stackbuilders.com>
+-- Stability   :  experimental
+-- Portability :  portable
+--
+-- Provides functionality to create a temporary file with correct permissions
+-- atomically.
+
 module System.AtomicWrite.Internal (closeAndRename, tempFileFor) where
 
 import System.Directory (doesFileExist, renameFile)
