@@ -10,21 +10,52 @@
 -- Provides functionality to dump the contents of a String
 -- to a file.
 
-module System.AtomicWrite.Writer.String (atomicWriteFile, atomicWithFile) where
+module System.AtomicWrite.Writer.String (atomicWriteFile, atomicWithFile, atomicWriteFileWithMode, atomicWithFileAndMode) where
 
-import System.AtomicWrite.Internal (closeAndRename, tempFileFor)
+import System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode)
 
 import System.IO (Handle, hPutStr)
 
--- | Creates a file atomically on POSIX-compliant systems while preserving
--- permissions.
+import System.Posix.Types (FileMode)
+
+-- | Creates or modifies a file atomically on POSIX-compliant
+-- systems while preserving permissions.
 atomicWriteFile ::
   FilePath   -- ^ The path where the file will be updated or created
   -> String  -- ^ The content to write to the file
   -> IO ()
 atomicWriteFile = (. flip hPutStr) . atomicWithFile
 
+
+-- | Creates or modifies a file atomically on
+-- POSIX-compliant systems and updates permissions
+atomicWriteFileWithMode ::
+  FileMode    -- ^ The mode to set the file to
+  -> FilePath -- ^ The path where the file will be updated or created
+  -> String   -- ^ The content to write to the file
+  -> IO ()
+atomicWriteFileWithMode mode = ( . flip hPutStr)
+                             . ( atomicWithFileAndMode mode )
+
 -- | A general version of 'atomicWriteFile'
 atomicWithFile :: FilePath -> (Handle -> IO ()) -> IO ()
-atomicWithFile f action = 
-  tempFileFor f >>= \(tmpPath, h) -> action h >> closeAndRename h tmpPath f
+atomicWithFile f action =
+  atomicWithFileAndMaybeMode Nothing f action
+
+-- | A general version of 'atomicWriteFileWithMode'
+atomicWithFileAndMode :: FileMode
+                      -> FilePath
+                      -> (Handle -> IO ())
+                      -> IO ()
+atomicWithFileAndMode mode path action =
+  atomicWithFileAndMaybeMode (Just mode) path action
+
+-- | Helper function
+atomicWithFileAndMaybeMode :: Maybe FileMode
+                           -> FilePath
+                           -> (Handle -> IO ())
+                           -> IO ()
+atomicWithFileAndMaybeMode mmode path action =
+  tempFileFor path >>= \(tmpPath, h) -> action h
+                    >> closeAndRename h tmpPath path
+                    >> maybeSetFileMode path mmode

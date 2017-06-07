@@ -1,15 +1,15 @@
-module System.AtomicWrite.Writer.TextSpec (spec) where
+module System.AtomicWrite.Writer.LazyTextSpec (spec) where
 
 import Test.Hspec (it, describe, shouldBe, Spec)
 
-import System.AtomicWrite.Writer.Text (atomicWriteFile, atomicWriteFileWithMode)
+import System.AtomicWrite.Writer.LazyText (atomicWriteFile, atomicWriteFileWithMode)
 
 import System.IO.Temp (withSystemTempDirectory)
 import System.FilePath.Posix (joinPath)
 import System.PosixCompat.Files
   (setFileMode, setFileCreationMask, getFileStatus, fileMode)
 
-import Data.Text (pack)
+import Data.Text.Lazy (pack)
 
 spec :: Spec
 spec = do

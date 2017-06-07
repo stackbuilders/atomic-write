@@ -10,13 +10,13 @@
 -- Provides functionality to dump the contents of a Text
 -- to a file.
 
-module System.AtomicWrite.Writer.Text (atomicWriteFile, atomicWriteFileWithMode) where
+module System.AtomicWrite.Writer.LazyText (atomicWriteFile, atomicWriteFileWithMode) where
 
 import System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode)
 
-import Data.Text (Text)
+import Data.Text.Lazy (Text)
 
-import Data.Text.IO (hPutStr)
+import Data.Text.Lazy.IO (hPutStr)
 
 import System.Posix.Types (FileMode)
 
