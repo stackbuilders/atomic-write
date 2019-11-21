@@ -12,8 +12,7 @@
 
 module System.AtomicWrite.Writer.Text (atomicWriteFile, atomicWriteFileWithMode) where
 
-import           System.AtomicWrite.Internal (closeAndRename, maybeSetFileMode,
-                                              tempFileFor)
+import           System.AtomicWrite.Internal (atomicWriteFileMaybeModeText)
 
 import           Data.Text                   (Text)
 
@@ -37,8 +36,8 @@ atomicWriteFileWithMode ::
   -> FilePath   -- ^ The path where the file will be updated or created
   -> Text       -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileWithMode mode =
-  atomicWriteFileMaybeMode $ Just mode
+atomicWriteFileWithMode =
+  atomicWriteFileMaybeMode . Just
 
 -- Helper Function
 atomicWriteFileMaybeMode ::
@@ -46,7 +45,4 @@ atomicWriteFileMaybeMode ::
   -> FilePath    -- ^ The path where the file will be updated or created
   -> Text        -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileMaybeMode mmode path text =
-  tempFileFor path >>= \(tmpPath, h) -> hPutStr h text
-                    >> closeAndRename h tmpPath path
-                    >> maybeSetFileMode path mmode
+atomicWriteFileMaybeMode mmode path = atomicWriteFileMaybeModeText mmode path hPutStr

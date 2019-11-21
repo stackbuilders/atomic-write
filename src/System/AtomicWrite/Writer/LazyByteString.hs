@@ -12,8 +12,7 @@
 
 module System.AtomicWrite.Writer.LazyByteString (atomicWriteFile, atomicWriteFileWithMode) where
 
-import           System.AtomicWrite.Internal (closeAndRename, maybeSetFileMode,
-                                              tempFileFor)
+import           System.AtomicWrite.Internal (atomicWriteFileMaybeModeText)
 
 import           Data.ByteString.Lazy        (ByteString, hPutStr)
 
@@ -35,8 +34,8 @@ atomicWriteFileWithMode ::
   -> FilePath   -- ^ The path where the file will be updated or created
   -> ByteString -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileWithMode mode =
-  atomicWriteFileMaybeMode $ Just mode
+atomicWriteFileWithMode =
+  atomicWriteFileMaybeMode . Just
 
 -- Helper Function
 atomicWriteFileMaybeMode ::
@@ -44,7 +43,4 @@ atomicWriteFileMaybeMode ::
   -> FilePath    -- ^ The path where the file will be updated or created
   -> ByteString  -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileMaybeMode mmode path text =
-  tempFileFor path >>= \(tmpPath, h) -> hPutStr h text
-                    >> closeAndRename h tmpPath path
-                    >> maybeSetFileMode path mmode
+atomicWriteFileMaybeMode mmode path = atomicWriteFileMaybeModeText mmode path hPutStr

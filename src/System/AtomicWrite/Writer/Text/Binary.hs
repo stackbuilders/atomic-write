@@ -12,16 +12,13 @@
 
 module System.AtomicWrite.Writer.Text.Binary (atomicWriteFile, atomicWriteFileWithMode) where
 
-import           System.AtomicWrite.Internal (closeAndRename, maybeSetFileMode,
-                                              tempFileFor)
+import           System.AtomicWrite.Internal (atomicWriteFileMaybeModeBinary)
 
 import           Data.Text                   (Text)
 
 import           Data.Text.IO                (hPutStr)
 
 import           System.Posix.Types          (FileMode)
-
-import           System.IO                   (hSetBinaryMode)
 
 -- | Creates a file atomically on POSIX-compliant
 -- systems while preserving permissions.
@@ -39,8 +36,8 @@ atomicWriteFileWithMode ::
   -> FilePath   -- ^ The path where the file will be updated or created
   -> Text       -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileWithMode mode =
-  atomicWriteFileMaybeMode $ Just mode
+atomicWriteFileWithMode =
+  atomicWriteFileMaybeMode . Just
 
 -- Helper Function
 atomicWriteFileMaybeMode ::
@@ -48,8 +45,4 @@ atomicWriteFileMaybeMode ::
   -> FilePath    -- ^ The path where the file will be updated or created
   -> Text        -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileMaybeMode mmode path text =
-  tempFileFor path >>= \(tmpPath, h) -> hSetBinaryMode h True
-                    >> hPutStr h text
-                    >> closeAndRename h tmpPath path
-                    >> maybeSetFileMode path mmode
+atomicWriteFileMaybeMode mmode path = atomicWriteFileMaybeModeBinary mmode path hPutStr

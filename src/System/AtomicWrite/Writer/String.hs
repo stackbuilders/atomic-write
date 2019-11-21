@@ -36,20 +36,18 @@ atomicWriteFileWithMode ::
   -> String   -- ^ The content to write to the file
   -> IO ()
 atomicWriteFileWithMode mode = ( . flip hPutStr)
-                             . ( atomicWithFileAndMode mode )
+                             .  atomicWithFileAndMode mode
 
 -- | A general version of 'atomicWriteFile'
 atomicWithFile :: FilePath -> (Handle -> IO ()) -> IO ()
-atomicWithFile f action =
-  atomicWithFileAndMaybeMode Nothing f action
+atomicWithFile = atomicWithFileAndMaybeMode Nothing
 
 -- | A general version of 'atomicWriteFileWithMode'
 atomicWithFileAndMode :: FileMode
                       -> FilePath
                       -> (Handle -> IO ())
                       -> IO ()
-atomicWithFileAndMode mode path action =
-  atomicWithFileAndMaybeMode (Just mode) path action
+atomicWithFileAndMode = atomicWithFileAndMaybeMode . Just
 
 -- | Helper function
 atomicWithFileAndMaybeMode :: Maybe FileMode

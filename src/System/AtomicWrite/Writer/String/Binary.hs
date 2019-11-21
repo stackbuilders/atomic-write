@@ -47,7 +47,7 @@ atomicWithFileAndMode :: FileMode
                       -> FilePath
                       -> (Handle -> IO ())
                       -> IO ()
-atomicWithFileAndMode mode = atomicWithFileAndMaybeMode (Just mode)
+atomicWithFileAndMode = atomicWithFileAndMaybeMode . Just
 
 -- | Helper function
 atomicWithFileAndMaybeMode :: Maybe FileMode
