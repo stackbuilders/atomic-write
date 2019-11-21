@@ -58,6 +58,7 @@ library
                        , System.AtomicWrite.Writer.String
                        , System.AtomicWrite.Writer.Text
                        , System.AtomicWrite.Writer.LazyText
+                       , System.AtomicWrite.Writer.LazyText.Binary
 
   other-modules:       System.AtomicWrite.Internal
 
@@ -87,6 +88,7 @@ test-suite atomic-write-test
                      , System.AtomicWrite.Writer.StringSpec
                      , System.AtomicWrite.Writer.TextSpec
                      , System.AtomicWrite.Writer.LazyTextSpec
+                     , System.AtomicWrite.Writer.LazyText.BinarySpec
 
   build-depends:       base >= 4.5 && < 5.0
                      , atomic-write
