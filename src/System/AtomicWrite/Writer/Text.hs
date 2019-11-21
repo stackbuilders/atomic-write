@@ -1,5 +1,5 @@
 -- |
--- Module      :  Configuration.Dotenv.Parse
+-- Module      :  System.AtomicWrite.Writer.Text
 -- Copyright   :  © 2015-2017 Stack Builders Inc.
 -- License     :  MIT
 --
@@ -12,13 +12,14 @@
 
 module System.AtomicWrite.Writer.Text (atomicWriteFile, atomicWriteFileWithMode) where
 
-import System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode)
+import           System.AtomicWrite.Internal (closeAndRename, maybeSetFileMode,
+                                              tempFileFor)
 
-import Data.Text (Text)
+import           Data.Text                   (Text)
 
-import Data.Text.IO (hPutStr)
+import           Data.Text.IO                (hPutStr)
 
-import System.Posix.Types (FileMode)
+import           System.Posix.Types          (FileMode)
 
 -- | Creates a file atomically on POSIX-compliant
 -- systems while preserving permissions.

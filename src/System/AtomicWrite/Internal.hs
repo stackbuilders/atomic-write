@@ -1,5 +1,5 @@
 -- |
--- Module      :  Configuration.Dotenv.Parse
+-- Module      :  System.AtomicWrite.Internal
 -- Copyright   :  © 2015-2017 Stack Builders Inc.
 -- License     :  MIT
 --
@@ -12,12 +12,12 @@
 
 module System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode) where
 
-import System.Directory (doesFileExist, renameFile)
-import System.PosixCompat.Files (setFileMode, getFileStatus, fileMode)
-import System.Posix.Types (FileMode)
-import System.FilePath (takeDirectory)
-import System.IO
-  (hClose, Handle, openTempFile, openTempFileWithDefaultPermissions)
+import           System.Directory         (doesFileExist, renameFile)
+import           System.FilePath          (takeDirectory)
+import           System.IO                (Handle, hClose, openTempFile,
+                                           openTempFileWithDefaultPermissions)
+import           System.Posix.Types       (FileMode)
+import           System.PosixCompat.Files (fileMode, getFileStatus, setFileMode)
 
 -- | Returns a temporary file with permissions correctly set. Chooses
 -- either previously-set permissions if the file that we're writing

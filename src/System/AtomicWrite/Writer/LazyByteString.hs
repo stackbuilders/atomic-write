@@ -1,5 +1,5 @@
 -- |
--- Module      :  Configuration.Dotenv.Parse
+-- Module      :  System.AtomicWrite.Writer.LazyByteString
 -- Copyright   :  © 2015-2017 Stack Builders Inc.
 -- License     :  MIT
 --
@@ -12,11 +12,12 @@
 
 module System.AtomicWrite.Writer.LazyByteString (atomicWriteFile, atomicWriteFileWithMode) where
 
-import System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode)
+import           System.AtomicWrite.Internal (closeAndRename, maybeSetFileMode,
+                                              tempFileFor)
 
-import Data.ByteString.Lazy (ByteString, hPutStr)
+import           Data.ByteString.Lazy        (ByteString, hPutStr)
 
-import System.Posix.Types (FileMode)
+import           System.Posix.Types          (FileMode)
 
 -- | Creates or modifies a file atomically on POSIX-compliant
 -- systems while preserving permissions.

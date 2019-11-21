@@ -1,23 +1,25 @@
-module System.AtomicWrite.Writer.ByteStringSpec (spec) where
+module System.AtomicWrite.Writer.ByteString.BinarySpec (spec) where
 
-import           Test.Hspec                           (Spec, describe, it,
-                                                       shouldBe)
 
-import           System.AtomicWrite.Writer.ByteString (atomicWriteFile,
-                                                       atomicWriteFileWithMode)
+import           Test.Hspec                                  (Spec, describe,
+                                                              it, shouldBe)
 
-import           System.FilePath.Posix                (joinPath)
-import           System.IO.Temp                       (withSystemTempDirectory)
-import           System.PosixCompat.Files             (fileMode, getFileStatus,
-                                                       setFileCreationMask,
-                                                       setFileMode)
+import           System.AtomicWrite.Writer.ByteString.Binary (atomicWriteFile, atomicWriteFileWithMode)
 
-import           Data.ByteString.Char8                (pack)
+import           System.FilePath.Posix                       (joinPath)
+import           System.IO.Temp                              (withSystemTempDirectory)
+import           System.PosixCompat.Files                    (fileMode,
+                                                              getFileStatus,
+                                                              setFileCreationMask,
+                                                              setFileMode)
+
+import           Data.ByteString.Char8                       (pack)
+
 
 spec :: Spec
 spec = do
   describe "atomicWriteFile" $ do
-    it "writes contents to a file" $
+    it "writes the contents to a file" $
       withSystemTempDirectory "atomicFileTest" $ \tmpDir -> do
 
         let path = joinPath [ tmpDir, "writeTest.tmp" ]

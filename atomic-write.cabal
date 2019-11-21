@@ -51,6 +51,7 @@ bug-reports:         https://github.com/stackbuilders/atomic-write/issues
 
 library
   exposed-modules:       System.AtomicWrite.Writer.ByteString
+                       , System.AtomicWrite.Writer.ByteString.Binary
                        , System.AtomicWrite.Writer.ByteStringBuilder
                        , System.AtomicWrite.Writer.LazyByteString
                        , System.AtomicWrite.Writer.String
