@@ -58,6 +58,7 @@ library
                        , System.AtomicWrite.Writer.String
                        , System.AtomicWrite.Writer.String.Binary
                        , System.AtomicWrite.Writer.Text
+                       , System.AtomicWrite.Writer.Text.Binary
                        , System.AtomicWrite.Writer.LazyText
                        , System.AtomicWrite.Writer.LazyText.Binary
 
@@ -89,6 +90,7 @@ test-suite atomic-write-test
                      , System.AtomicWrite.Writer.StringSpec
                      , System.AtomicWrite.Writer.String.BinarySpec
                      , System.AtomicWrite.Writer.TextSpec
+                     , System.AtomicWrite.Writer.Text.BinarySpec
                      , System.AtomicWrite.Writer.LazyTextSpec
                      , System.AtomicWrite.Writer.LazyText.BinarySpec
 
