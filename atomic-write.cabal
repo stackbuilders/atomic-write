@@ -79,6 +79,7 @@ test-suite atomic-write-test
   main-is: Spec.hs
 
   other-modules:       System.AtomicWrite.Writer.ByteStringSpec
+                     , System.AtomicWrite.Writer.ByteString.BinarySpec
                      , System.AtomicWrite.Writer.ByteStringBuilderSpec
                      , System.AtomicWrite.Writer.LazyByteStringSpec
                      , System.AtomicWrite.Writer.StringSpec
