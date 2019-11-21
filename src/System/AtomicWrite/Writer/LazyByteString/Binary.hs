@@ -1,6 +1,6 @@
 -- |
 -- Module      :  System.AtomicWrite.Writer.LazyByteString.Binary
--- Copyright   :  © 2015-2017 Stack Builders Inc.
+-- Copyright   :  © 2015-2019 Stack Builders Inc.
 -- License     :  MIT
 --
 -- Maintainer  :  Stack Builders <hackage@stackbuilders.com>
