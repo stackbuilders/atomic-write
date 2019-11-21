@@ -1,5 +1,5 @@
 -- |
--- Module      :  System.AtomicWrite.Writer.Text
+-- Module      :  System.AtomicWrite.Writer.LazyText.Binary
 -- Copyright   :  © 2015-2019 Stack Builders Inc.
 -- License     :  MIT
 --
@@ -8,17 +8,18 @@
 -- Portability :  portable
 --
 -- Provides functionality to dump the contents of a Text
--- to a file.
+-- to a file in binary mode.
 
-module System.AtomicWrite.Writer.Text (atomicWriteFile, atomicWriteFileWithMode) where
+module System.AtomicWrite.Writer.LazyText.Binary (atomicWriteFile, atomicWriteFileWithMode) where
 
-import           System.AtomicWrite.Internal (atomicWriteFileMaybeModeText)
+import           System.AtomicWrite.Internal (atomicWriteFileMaybeModeBinary)
 
-import           Data.Text                   (Text)
+import           Data.Text.Lazy              (Text)
 
-import           Data.Text.IO                (hPutStr)
+import           Data.Text.Lazy.IO           (hPutStr)
 
 import           System.Posix.Types          (FileMode)
+
 
 -- | Creates a file atomically on POSIX-compliant
 -- systems while preserving permissions.
@@ -36,8 +37,7 @@ atomicWriteFileWithMode ::
   -> FilePath   -- ^ The path where the file will be updated or created
   -> Text       -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileWithMode =
-  atomicWriteFileMaybeMode . Just
+atomicWriteFileWithMode = atomicWriteFileMaybeMode . Just
 
 -- Helper Function
 atomicWriteFileMaybeMode ::
@@ -45,4 +45,4 @@ atomicWriteFileMaybeMode ::
   -> FilePath    -- ^ The path where the file will be updated or created
   -> Text        -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileMaybeMode mmode path = atomicWriteFileMaybeModeText mmode path hPutStr
+atomicWriteFileMaybeMode mmode path = atomicWriteFileMaybeModeBinary mmode path hPutStr

@@ -1,15 +1,18 @@
 module System.AtomicWrite.Writer.ByteStringSpec (spec) where
 
-import Test.Hspec (it, describe, shouldBe, Spec)
+import           Test.Hspec                           (Spec, describe, it,
+                                                       shouldBe)
 
-import System.AtomicWrite.Writer.ByteString (atomicWriteFile, atomicWriteFileWithMode)
+import           System.AtomicWrite.Writer.ByteString (atomicWriteFile,
+                                                       atomicWriteFileWithMode)
 
-import System.IO.Temp (withSystemTempDirectory)
-import System.FilePath.Posix (joinPath)
-import System.PosixCompat.Files
-  (setFileMode, setFileCreationMask, getFileStatus, fileMode)
+import           System.FilePath.Posix                (joinPath)
+import           System.IO.Temp                       (withSystemTempDirectory)
+import           System.PosixCompat.Files             (fileMode, getFileStatus,
+                                                       setFileCreationMask,
+                                                       setFileMode)
 
-import Data.ByteString.Char8 (pack)
+import           Data.ByteString.Char8                (pack)
 
 spec :: Spec
 spec = do
@@ -134,3 +137,4 @@ spec = do
         resultStat <- getFileStatus filePath
 
         fileMode resultStat `shouldBe` 0o100606
+

@@ -1,6 +1,6 @@
 -- |
--- Module      :  Configuration.Dotenv.Parse
--- Copyright   :  © 2015-2017 Stack Builders Inc.
+-- Module      :  System.AtomicWrite.Writer.ByteStringBuilder
+-- Copyright   :  © 2015-2019 Stack Builders Inc.
 -- License     :  MIT
 --
 -- Maintainer  :  Stack Builders <hackage@stackbuilders.com>
@@ -12,13 +12,15 @@
 
 module System.AtomicWrite.Writer.ByteStringBuilder (atomicWriteFile, atomicWriteFileWithMode) where
 
-import System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode)
+import           System.AtomicWrite.Internal (closeAndRename, maybeSetFileMode,
+                                              tempFileFor)
 
-import Data.ByteString.Builder (hPutBuilder, Builder, hPutBuilder)
+import           Data.ByteString.Builder     (Builder, hPutBuilder)
 
-import GHC.IO.Handle (hSetBinaryMode, hSetBuffering, BufferMode (BlockBuffering))
+import           GHC.IO.Handle               (BufferMode (BlockBuffering),
+                                              hSetBinaryMode, hSetBuffering)
 
-import System.Posix.Types (FileMode)
+import           System.Posix.Types          (FileMode)
 
 -- | Creates or modifies a file atomically on POSIX-compliant
 -- systems while preserving permissions.

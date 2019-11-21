@@ -1,34 +1,33 @@
-module System.AtomicWrite.Writer.StringSpec (spec) where
-
-import           Test.Hspec                       (Spec, describe, it, shouldBe)
-
-import           System.AtomicWrite.Writer.String (atomicWriteFile,
-                                                   atomicWriteFileWithMode)
-
-import           System.FilePath                  (joinPath)
-import           System.IO.Temp                   (withSystemTempDirectory)
-import           System.PosixCompat.Files         (fileMode, getFileStatus,
-                                                   setFileCreationMask,
-                                                   setFileMode)
+module System.AtomicWrite.Writer.ByteString.BinarySpec (spec) where
 
 
-{-# ANN module "HLint: ignore Reduce duplication" #-}
+import           Test.Hspec                                  (Spec, describe,
+                                                              it, shouldBe)
+
+import           System.AtomicWrite.Writer.ByteString.Binary (atomicWriteFile, atomicWriteFileWithMode)
+
+import           System.FilePath.Posix                       (joinPath)
+import           System.IO.Temp                              (withSystemTempDirectory)
+import           System.PosixCompat.Files                    (fileMode,
+                                                              getFileStatus,
+                                                              setFileCreationMask,
+                                                              setFileMode)
+
+import           Data.ByteString.Char8                       (pack)
+
 
 spec :: Spec
 spec = do
   describe "atomicWriteFile" $ do
-    it "writes contents to a file" $
+    it "writes the contents to a file" $
       withSystemTempDirectory "atomicFileTest" $ \tmpDir -> do
 
         let path = joinPath [ tmpDir, "writeTest.tmp" ]
 
-        atomicWriteFile path "just testing"
-
+        atomicWriteFile path $ pack "just testing"
         contents <- readFile path
 
         contents `shouldBe` "just testing"
-
-
     it "preserves the permissions of original file, regardless of umask" $
       withSystemTempDirectory "atomicFileTest" $ \tmpDir -> do
         let filePath = joinPath [tmpDir, "testFile"]
@@ -49,7 +48,7 @@ spec = do
         fileMode sanityCheckStat `shouldBe` 0o100600
 
         -- Since we move, this makes the new file assume the filemask of 0600
-        atomicWriteFile filePath "new contents"
+        atomicWriteFile filePath $ pack "new contents"
 
         resultStat <- getFileStatus filePath
 
@@ -76,7 +75,7 @@ spec = do
         newStat <- getFileStatus sampleFilePath
         fileMode newStat `shouldBe` 0o100606
 
-        atomicWriteFile filePath "new contents"
+        atomicWriteFile filePath $ pack "new contents"
 
         resultStat <- getFileStatus filePath
 
@@ -93,7 +92,7 @@ spec = do
 
         let path = joinPath [ tmpDir, "writeTest.tmp" ]
 
-        atomicWriteFileWithMode 0o100777 path "just testing"
+        atomicWriteFileWithMode 0o100777 path $ pack "just testing"
 
         contents <- readFile path
 
@@ -120,7 +119,7 @@ spec = do
         fileMode sanityCheckStat `shouldBe` 0o100600
 
         -- Since we move, this makes the new file assume the filemask of 0600
-        atomicWriteFileWithMode 0o100655 filePath "new contents"
+        atomicWriteFileWithMode 0o100655 filePath $ pack "new contents"
 
         resultStat <- getFileStatus filePath
 
@@ -135,8 +134,9 @@ spec = do
       withSystemTempDirectory "atomicFileTest" $ \tmpDir -> do
         let
           filePath       = joinPath [tmpDir, "testFile"]
-        atomicWriteFileWithMode 0o100606 filePath "new contents"
+        atomicWriteFileWithMode 0o100606 filePath $ pack "new contents"
 
         resultStat <- getFileStatus filePath
 
         fileMode resultStat `shouldBe` 0o100606
+

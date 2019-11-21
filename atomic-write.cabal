@@ -1,5 +1,5 @@
 name:                atomic-write
-version:             0.2.0.6
+version:             0.2.0.7
 synopsis:            Atomically write to a file
 homepage:            https://github.com/stackbuilders/atomic-write
 description:
@@ -43,7 +43,7 @@ license:             MIT
 license-file:        LICENSE
 author:              Justin Leitgeb
 maintainer:          support@stackbuilders.com
-copyright:           2015-2018 Stack Builders Inc.
+copyright:           2015-2019 Stack Builders Inc.
 category:            System
 build-type:          Simple
 cabal-version:       >=1.10
@@ -51,11 +51,16 @@ bug-reports:         https://github.com/stackbuilders/atomic-write/issues
 
 library
   exposed-modules:       System.AtomicWrite.Writer.ByteString
+                       , System.AtomicWrite.Writer.ByteString.Binary
                        , System.AtomicWrite.Writer.ByteStringBuilder
                        , System.AtomicWrite.Writer.LazyByteString
+                       , System.AtomicWrite.Writer.LazyByteString.Binary
                        , System.AtomicWrite.Writer.String
+                       , System.AtomicWrite.Writer.String.Binary
                        , System.AtomicWrite.Writer.Text
+                       , System.AtomicWrite.Writer.Text.Binary
                        , System.AtomicWrite.Writer.LazyText
+                       , System.AtomicWrite.Writer.LazyText.Binary
 
   other-modules:       System.AtomicWrite.Internal
 
@@ -78,11 +83,16 @@ test-suite atomic-write-test
   main-is: Spec.hs
 
   other-modules:       System.AtomicWrite.Writer.ByteStringSpec
+                     , System.AtomicWrite.Writer.ByteString.BinarySpec
                      , System.AtomicWrite.Writer.ByteStringBuilderSpec
                      , System.AtomicWrite.Writer.LazyByteStringSpec
+                     , System.AtomicWrite.Writer.LazyByteString.BinarySpec
                      , System.AtomicWrite.Writer.StringSpec
+                     , System.AtomicWrite.Writer.String.BinarySpec
                      , System.AtomicWrite.Writer.TextSpec
+                     , System.AtomicWrite.Writer.Text.BinarySpec
                      , System.AtomicWrite.Writer.LazyTextSpec
+                     , System.AtomicWrite.Writer.LazyText.BinarySpec
 
   build-depends:       base >= 4.5 && < 5.0
                      , atomic-write

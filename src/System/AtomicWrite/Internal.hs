@@ -1,6 +1,6 @@
 -- |
--- Module      :  Configuration.Dotenv.Parse
--- Copyright   :  © 2015-2017 Stack Builders Inc.
+-- Module      :  System.AtomicWrite.Internal
+-- Copyright   :  © 2015-2019 Stack Builders Inc.
 -- License     :  MIT
 --
 -- Maintainer  :  Stack Builders <hackage@stackbuilders.com>
@@ -10,14 +10,15 @@
 -- Provides functionality to create a temporary file with correct permissions
 -- atomically.
 
-module System.AtomicWrite.Internal (closeAndRename, tempFileFor, maybeSetFileMode) where
+module System.AtomicWrite.Internal where
 
-import System.Directory (doesFileExist, renameFile)
-import System.PosixCompat.Files (setFileMode, getFileStatus, fileMode)
-import System.Posix.Types (FileMode)
-import System.FilePath (takeDirectory)
-import System.IO
-  (hClose, Handle, openTempFile, openTempFileWithDefaultPermissions)
+import           System.Directory         (doesFileExist, renameFile)
+import           System.FilePath          (takeDirectory)
+import           System.IO                (Handle, hClose, hSetBinaryMode,
+                                           openTempFile,
+                                           openTempFileWithDefaultPermissions)
+import           System.Posix.Types       (FileMode)
+import           System.PosixCompat.Files (fileMode, getFileStatus, setFileMode)
 
 -- | Returns a temporary file with permissions correctly set. Chooses
 -- either previously-set permissions if the file that we're writing
@@ -57,3 +58,29 @@ maybeSetFileMode path =
   maybe
     ( return () )
     ( \mode -> setFileMode path mode )
+
+
+-- Helper Function
+atomicWriteFileMaybeModeText ::
+  Maybe FileMode -- ^ The mode to set the file to
+  -> FilePath    -- ^ The path where the file will be updated or created
+  -> (Handle -> a -> IO ()) -- ^ The function to use to write on the file
+  -> a        -- ^ The content to write to the file
+  -> IO ()
+atomicWriteFileMaybeModeText mmode path hF text =
+  tempFileFor path >>= \(tmpPath, h) -> hSetBinaryMode h False
+                    >> hF h text
+                    >> closeAndRename h tmpPath path
+                    >> maybeSetFileMode path mmode
+-- Helper Function
+atomicWriteFileMaybeModeBinary ::
+  Maybe FileMode -- ^ The mode to set the file to
+  -> FilePath    -- ^ The path where the file will be updated or created
+  -> (Handle -> a -> IO ()) -- ^ The function to use to write on the file
+  -> a        -- ^ The content to write to the file
+  -> IO ()
+atomicWriteFileMaybeModeBinary mmode path hF text =
+  tempFileFor path >>= \(tmpPath, h) -> hSetBinaryMode h True
+                    >> hF h text
+                    >> closeAndRename h tmpPath path
+                    >> maybeSetFileMode path mmode

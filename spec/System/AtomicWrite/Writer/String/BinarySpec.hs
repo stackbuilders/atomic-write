@@ -1,15 +1,16 @@
-module System.AtomicWrite.Writer.StringSpec (spec) where
+module System.AtomicWrite.Writer.String.BinarySpec (spec) where
 
-import           Test.Hspec                       (Spec, describe, it, shouldBe)
+import           Test.Hspec                              (Spec, describe, it,
+                                                          shouldBe)
 
-import           System.AtomicWrite.Writer.String (atomicWriteFile,
-                                                   atomicWriteFileWithMode)
+import           System.AtomicWrite.Writer.String.Binary (atomicWriteFile, atomicWriteFileWithMode)
 
-import           System.FilePath                  (joinPath)
-import           System.IO.Temp                   (withSystemTempDirectory)
-import           System.PosixCompat.Files         (fileMode, getFileStatus,
-                                                   setFileCreationMask,
-                                                   setFileMode)
+import           System.FilePath                         (joinPath)
+import           System.IO.Temp                          (withSystemTempDirectory)
+import           System.PosixCompat.Files                (fileMode,
+                                                          getFileStatus,
+                                                          setFileCreationMask,
+                                                          setFileMode)
 
 
 {-# ANN module "HLint: ignore Reduce duplication" #-}

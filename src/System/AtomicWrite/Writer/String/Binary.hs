@@ -1,5 +1,5 @@
 -- |
--- Module      :  System.AtomicWrite.Writer.String
+-- Module      :  System.AtomicWrite.Writer.String.Binary
 -- Copyright   :  © 2015-2019 Stack Builders Inc.
 -- License     :  MIT
 --
@@ -8,14 +8,14 @@
 -- Portability :  portable
 --
 -- Provides functionality to dump the contents of a String
--- to a file.
+-- to a file in binary mode.
 
-module System.AtomicWrite.Writer.String (atomicWriteFile, atomicWithFile, atomicWriteFileWithMode, atomicWithFileAndMode) where
+module System.AtomicWrite.Writer.String.Binary (atomicWriteFile, atomicWithFile, atomicWriteFileWithMode, atomicWithFileAndMode) where
 
 import           System.AtomicWrite.Internal (closeAndRename, maybeSetFileMode,
                                               tempFileFor)
 
-import           System.IO                   (Handle, hPutStr)
+import           System.IO                   (Handle, hPutStr, hSetBinaryMode)
 
 import           System.Posix.Types          (FileMode)
 
@@ -55,6 +55,7 @@ atomicWithFileAndMaybeMode :: Maybe FileMode
                            -> (Handle -> IO ())
                            -> IO ()
 atomicWithFileAndMaybeMode mmode path action =
-  tempFileFor path >>= \(tmpPath, h) -> action h
+  tempFileFor path >>= \(tmpPath, h) -> hSetBinaryMode h True
+                    >> action h
                     >> closeAndRename h tmpPath path
                     >> maybeSetFileMode path mmode

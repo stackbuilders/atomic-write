@@ -1,5 +1,5 @@
 -- |
--- Module      :  System.AtomicWrite.Writer.LazyByteString
+-- Module      :  System.AtomicWrite.Writer.Text.Binary
 -- Copyright   :  © 2015-2019 Stack Builders Inc.
 -- License     :  MIT
 --
@@ -7,22 +7,24 @@
 -- Stability   :  experimental
 -- Portability :  portable
 --
--- Provides functionality to dump the contents of a Lazy ByteString
--- to a file.
+-- Provides functionality to dump the contents of a Text
+-- to a file in binary mode.
 
-module System.AtomicWrite.Writer.LazyByteString (atomicWriteFile, atomicWriteFileWithMode) where
+module System.AtomicWrite.Writer.Text.Binary (atomicWriteFile, atomicWriteFileWithMode) where
 
-import           System.AtomicWrite.Internal (atomicWriteFileMaybeModeText)
+import           System.AtomicWrite.Internal (atomicWriteFileMaybeModeBinary)
 
-import           Data.ByteString.Lazy        (ByteString, hPutStr)
+import           Data.Text                   (Text)
+
+import           Data.Text.IO                (hPutStr)
 
 import           System.Posix.Types          (FileMode)
 
--- | Creates or modifies a file atomically on POSIX-compliant
+-- | Creates a file atomically on POSIX-compliant
 -- systems while preserving permissions.
 atomicWriteFile ::
-  FilePath      -- ^ The path where the file will be updated or created
-  -> ByteString -- ^ The content to write to the file
+  FilePath   -- ^ The path where the file will be updated or created
+  -> Text    -- ^ The content to write to the file
   -> IO ()
 atomicWriteFile =
   atomicWriteFileMaybeMode Nothing
@@ -32,7 +34,7 @@ atomicWriteFile =
 atomicWriteFileWithMode ::
   FileMode      -- ^ The mode to set the file to
   -> FilePath   -- ^ The path where the file will be updated or created
-  -> ByteString -- ^ The content to write to the file
+  -> Text       -- ^ The content to write to the file
   -> IO ()
 atomicWriteFileWithMode =
   atomicWriteFileMaybeMode . Just
@@ -41,6 +43,6 @@ atomicWriteFileWithMode =
 atomicWriteFileMaybeMode ::
   Maybe FileMode -- ^ The mode to set the file to
   -> FilePath    -- ^ The path where the file will be updated or created
-  -> ByteString  -- ^ The content to write to the file
+  -> Text        -- ^ The content to write to the file
   -> IO ()
-atomicWriteFileMaybeMode mmode path = atomicWriteFileMaybeModeText mmode path hPutStr
+atomicWriteFileMaybeMode mmode path = atomicWriteFileMaybeModeBinary mmode path hPutStr
