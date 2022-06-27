@@ -47,4 +47,3 @@ Do you want to contribute to this project? Please take a look at our [contributi
 ---
 <img src="https://www.stackbuilders.com/media/images/Sb-supports.original.png" alt="Stack Builders" width="50%"></img>  
 [Check out our libraries](https://github.com/stackbuilders/) | [Join our team](https://www.stackbuilders.com/join-us/)
-(C) 2015-2019 [Stack Builders Inc.](http://www.stackbuilders.com/)
