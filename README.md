@@ -28,10 +28,11 @@ This library is based on similar implementations found in common libraries in Ru
 
 To use `atomic-write`, import the module corresponding to the type you wish to write atomically, e.g., to write a (strict) ByteString atomically:
 
-import System.AtomicWrite.Writer.ByteString
+```import System.AtomicWrite.Writer.ByteString```
+
 Then you can use the atomicWriteFile function that accepts a FilePath and a ByteString, e.g.:
 
-atomicWriteFile myFilePath myByteString
+```atomicWriteFile myFilePath myByteString```
 
 See the
 [Haddock documentation](http://hackage.haskell.org/package/atomic-write).
