@@ -1,0 +1,35 @@
+# The present workflow was made based on the following references:
+# - https://github.com/stackbuilders/hapistrano/blob/master/.github/workflows/build.yml
+---
+name: build
+
+on: push
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  haskell:
+    strategy:
+      matrix:
+        ghc:
+          - "8.10"
+          - "8.4.3"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Haskell tooling
+        uses: haskell/actions/setup@v2
+        with:
+          ghc-version: ${{ matrix.ghc }}
+          cabal-version: "3.6"
+      - name: Configure project
+        run: cabal configure --enable-tests
+      - name: Build project
+        run: cabal build
+      - name: Run tests
+        run: cabal test --test-show-details=direct
+      - name: Check documentation
+        run: cabal haddock

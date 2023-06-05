@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/stackbuilders/atomic-write.svg?branch=master)](https://travis-ci.org/stackbuilders/atomic-write) [![Hackage version](https://img.shields.io/hackage/v/atomic-write.svg)](http://hackage.haskell.org/package/atomic-write)
+[![Build](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml)
+[![Hackage version](https://img.shields.io/hackage/v/atomic-write.svg)](http://hackage.haskell.org/package/atomic-write)
 
 # Atomic Write
 
