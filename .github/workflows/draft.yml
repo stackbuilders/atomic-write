@@ -6,39 +6,16 @@ on:
       - 'v*'
 
 jobs:
-  build-binary:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: addnab/docker-run-action@v3
-        with:
-          image: utdemir/ghc-musl:v24-ghc922
-          options: -v ${{ github.workspace }}:/mnt
-          run: |
-            cd /mnt
-            sh build.static.sh
-
-      - name: Change owner before compression
-        run: sudo chown $USER:$USER atomic-write
-
-      - name: Compress binary
-        uses: svenstaro/upx-action@v2
-        with:
-          file: atomic-write
-          args: --best --lzma
-          strip: true
-
-      - name: Rename binary file
-        run: cp atomic-write atomic-write-${{ github.ref_name }}-linux-x86_64-bin
-
-      - name: Create release with package assets
+      - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           body_path: CHANGELOG.md
-          files: |
-           atomic-write-${{ github.ref_name }}-linux-x86_64-bin
           draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

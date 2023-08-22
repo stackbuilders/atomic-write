@@ -17,6 +17,6 @@ graph LR;
     event-->|tag created|Draft;
     Draft-->|create draft release|End;
     event-->|release published|Release;
-    Release-->|upload artifacts to Hackage (release candidate)|End;
+    Release-->|upload artifacts to Hackage - release candidate|End;
     Build-->End;
 ```
