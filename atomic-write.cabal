@@ -102,7 +102,7 @@ test-suite atomic-write-test
                      , text
                      , bytestring >= 0.10.4
                      , hspec
-  
+
   build-tools: hspec-discover >= 2.0 && < 3.0
 
   default-language:    Haskell2010
