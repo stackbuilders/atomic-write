@@ -1,0 +1,61 @@
+{
+  "projectName": "atomic-write",
+  "projectOwner": "stackbuilders",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "jsl",
+      "name": "Justin S. Leitgeb",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9977?v=4",
+      "profile": "https://www.stackbuilders.com/news/author/justin-leitgeb",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "cptrodolfox",
+      "name": "William R. Arellano",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20303685?v=4",
+      "profile": "https://github.com/cptrodolfox",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Alex0jk",
+      "name": "Alexander Mejía",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22301755?v=4",
+      "profile": "https://github.com/Alex0jk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "acamino",
+      "name": "Agustin Camino",
+      "avatar_url": "https://avatars.githubusercontent.com/u/957202?v=4",
+      "profile": "https://github.com/acamino",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "juanpaucar",
+      "name": "Juan Paucar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2164411?v=4",
+      "profile": "https://juancarlos.io/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
+}
