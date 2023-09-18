@@ -1,5 +1,8 @@
 [![Build](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml)
 [![Hackage version](https://img.shields.io/hackage/v/atomic-write.svg)](http://hackage.haskell.org/package/atomic-write)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Atomic Write
 
