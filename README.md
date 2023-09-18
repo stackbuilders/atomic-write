@@ -1,5 +1,8 @@
 [![Build](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml)
 [![Hackage version](https://img.shields.io/hackage/v/atomic-write.svg)](http://hackage.haskell.org/package/atomic-write)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Atomic Write
 
@@ -38,6 +41,41 @@ Then you can use the atomicWriteFile function that accepts a FilePath and a Byte
 See the
 [Haddock documentation](http://hackage.haskell.org/package/atomic-write).
 
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.stackbuilders.com/news/author/justin-leitgeb"><img src="https://avatars.githubusercontent.com/u/9977?v=4?s=100" width="100px;" alt="Justin S. Leitgeb"/><br /><sub><b>Justin S. Leitgeb</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=jsl" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/cptrodolfox"><img src="https://avatars.githubusercontent.com/u/20303685?v=4?s=100" width="100px;" alt="William R. Arellano"/><br /><sub><b>William R. Arellano</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=cptrodolfox" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Alex0jk"><img src="https://avatars.githubusercontent.com/u/22301755?v=4?s=100" width="100px;" alt="Alexander Mejía"/><br /><sub><b>Alexander Mejía</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=Alex0jk" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/acamino"><img src="https://avatars.githubusercontent.com/u/957202?v=4?s=100" width="100px;" alt="Agustin Camino"/><br /><sub><b>Agustin Camino</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=acamino" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://juancarlos.io/"><img src="https://avatars.githubusercontent.com/u/2164411?v=4?s=100" width="100px;" alt="Juan Paucar"/><br /><sub><b>Juan Paucar</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=juanpaucar" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td align="center" size="13px" colspan="7">
+        <img src="https://raw.githubusercontent.com/all-contributors/all-contributors-cli/1b8533af435da9854653492b1327a23a4dbd0a10/assets/logo-small.svg">
+          <a href="https://all-contributors.js.org/docs/en/bot/usage">Add your contributions</a>
+        </img>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
 ## License
 
 MIT, see [the LICENSE file](LICENSE).
@@ -47,5 +85,5 @@ MIT, see [the LICENSE file](LICENSE).
 Do you want to contribute to this project? Please take a look at our [contributing guideline](/docs/CONTRIBUTING.md) to know how you can help us build it.
 
 ---
-<img src="https://cdn.stackbuilders.com/media/images/Sb-supports.original.png" alt="Stack Builders" width="50%"></img>  
+<img src="https://cdn.stackbuilders.com/media/images/Sb-supports.original.png" alt="Stack Builders" width="50%"></img>
 [Check out our libraries](https://github.com/stackbuilders/) | [Join our team](https://www.stackbuilders.com/join-us/)
