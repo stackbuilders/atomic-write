@@ -24,7 +24,7 @@ main = do
 
     _ <- forkIO (simulateLoggingProcess logFilePath)
 
-    threadDelay 12000000
+    threadDelay 5000000
 
     putStrLn "Log file contents: "
     TIO.readFile logFilePath >>= TIO.putStrLn 
