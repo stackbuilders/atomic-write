@@ -65,12 +65,12 @@ library
   other-modules:       System.AtomicWrite.Internal
 
   build-depends:         base >= 4.5 && < 5.0
-                       , temporary
-                       , unix-compat
-                       , directory
-                       , filepath
-                       , text
-                       , bytestring >= 0.10.4
+                       , temporary >= 1.3 && < 1.4
+                       , unix-compat >= 0.7 && < 1.0
+                       , directory >= 1.3 && < 1.4
+                       , filepath >= 1.4 && < 1.5
+                       , text >= 2.1 && < 3.0
+                       , bytestring >= 0.10.4 && < 0.13.0
 
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -100,7 +100,7 @@ test-suite atomic-write-test
                      , unix-compat
                      , filepath
                      , text
-                     , bytestring >= 0.10.4
+                     , bytestring
                      , hspec
 
   build-tools: hspec-discover >= 2.0 && < 3.0
