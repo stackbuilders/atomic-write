@@ -7,7 +7,7 @@
     "README.md"
   ],
   "imageSize": 100,
-  "commit": false,
+  "commit": true,
   "commitConvention": "gitmoji",
   "contributors": [
     {
@@ -53,6 +53,15 @@
       "profile": "https://juancarlos.io/",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "BarbDMC",
+      "name": "Barbara Morantes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67979158?v=4",
+      "profile": "https://www.barbaramorantes.com/",
+      "contributions": [
+        "example"
       ]
     }
   ],
