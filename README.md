@@ -1,7 +1,7 @@
 [![Build](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/stackbuilders/atomic-write/actions/workflows/build.yml)
 [![Hackage version](https://img.shields.io/hackage/v/atomic-write.svg)](http://hackage.haskell.org/package/atomic-write)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Atomic Write
@@ -56,6 +56,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Alex0jk"><img src="https://avatars.githubusercontent.com/u/22301755?v=4?s=100" width="100px;" alt="Alexander Mejía"/><br /><sub><b>Alexander Mejía</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=Alex0jk" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/acamino"><img src="https://avatars.githubusercontent.com/u/957202?v=4?s=100" width="100px;" alt="Agustin Camino"/><br /><sub><b>Agustin Camino</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=acamino" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://juancarlos.io/"><img src="https://avatars.githubusercontent.com/u/2164411?v=4?s=100" width="100px;" alt="Juan Paucar"/><br /><sub><b>Juan Paucar</b></sub></a><br /><a href="https://github.com/stackbuilders/atomic-write/commits?author=juanpaucar" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.barbaramorantes.com/"><img src="https://avatars.githubusercontent.com/u/67979158?v=4?s=100" width="100px;" alt="Barbara Morantes"/><br /><sub><b>Barbara Morantes</b></sub></a><br /><a href="#example-BarbDMC" title="Examples">💡</a></td>
     </tr>
   </tbody>
   <tfoot>

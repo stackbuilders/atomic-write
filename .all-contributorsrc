@@ -54,6 +54,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "BarbDMC",
+      "name": "Barbara Morantes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67979158?v=4",
+      "profile": "https://www.barbaramorantes.com/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 7,
