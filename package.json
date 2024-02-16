@@ -1,0 +1,19 @@
+{
+  "name": "atomic-write",
+  "version": "0.0.0",
+  "description": "Writes files atomically in Haskell while preserving permissions",
+  "repository": "git@github.com:stackbuilders/atomic-write.git",
+  "author": "Justin Leitgeb",
+  "license": "MIT",
+  "engines": {
+    "node": "21.6.2"
+  },
+  "scripts": {
+    "release": "semantic-release"
+  },
+  "devDependencies": {
+    "semantic-release": "^23.0.2",
+    "semantic-release-hackage": "^1.0.0"
+  },
+  "packageManager": "yarn@4.1.0"
+}
