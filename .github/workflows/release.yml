@@ -35,21 +35,17 @@ jobs:
             ~/.cabal/packages
             ~/.cabal/store
             dist-newstyle
-      - name: Install NodeJS
-        command: |
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-          echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
-          echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --install' >> $BASH_ENV
-          source $BASH_ENV
-      - name: Install yarn
-        command: npm install -g yarn
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
       - name: Install packages
         command: yarn install --immutable
       - name: Publish package to Hackage
         command: yarn release
         env:
           HACKAGE_TOKEN: ${{ secrets.HACKAGE_API_KEY }}
-        continue-on-error: true
       - name: Generate documentation
         run: cabal v2-haddock --haddock-for-hackage --enable-documentation
       - name: Upload documentation to Hackage

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Writes files atomically in Haskell while preserving permissions",
   "repository": "git@github.com:stackbuilders/atomic-write.git",
-  "author": "Justin Leitgeb",
+  "author": "Stack Builders <info@stackbuilders.com>",
   "license": "MIT",
   "engines": {
     "node": "21.6.2"
