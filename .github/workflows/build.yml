@@ -1,9 +1,10 @@
-# The present workflow was made based on the following references:
-# - https://github.com/stackbuilders/hapistrano/blob/master/.github/workflows/build.yml
----
 name: build
 
-on: push
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
 
 concurrency:
   group: build-${{ github.ref }}
