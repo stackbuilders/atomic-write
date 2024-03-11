@@ -5,21 +5,57 @@
 name: Release
 
 on:
-  release:
-    types:
-      - published
+  workflow_dispatch:
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release
   cancel-in-progress: true
 
 jobs:
-  cabal-upload:
-    uses: stackbuilders/reusable-workflows/.github/workflows/cabal-upload.yml@main
-    with:
-      ghc_version: "8.10"
-      cabal_version: "3.6"
-      ignore_uploaded_package: true
-    secrets:
-      HACKAGE_USERNAME: ${{ secrets.HACKAGE_USERNAME }}
-      HACKAGE_PASSWORD: ${{ secrets.HACKAGE_PASSWORD }}
+  upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup tooling
+        uses: haskell/actions/setup@v2
+        with:
+          ghc-version: "8.10"
+          cabal-version: "3.6"
+      - name: Freeze dependencies
+        run: cabal freeze
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('*.cabal', 'cabal.project.freeze') }}
+          restore-keys: ${{ runner.os }}-
+          path: |
+            ~/.cabal/packages
+            ~/.cabal/store
+            dist-newstyle
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install packages
+        command: yarn install --immutable
+      - name: Publish package to Hackage
+        command: yarn release
+        env:
+          HACKAGE_TOKEN: ${{ secrets.HACKAGE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate documentation
+        run: cabal v2-haddock --haddock-for-hackage --enable-documentation
+      - name: Upload documentation to Hackage
+        run: |
+          cabal upload --publish \
+            --username "${{ secrets.HACKAGE_USERNAME }}" \
+            --password "${{ secrets.HACKAGE_PASSWORD }}" \
+            --documentation \
+            dist-newstyle/*-docs.tar.gz
