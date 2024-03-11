@@ -5,17 +5,20 @@
 name: Release
 
 on:
-  release:
-    types:
-      - published
+  workflow_dispatch:
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release
   cancel-in-progress: true
 
 jobs:
   upload:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -46,6 +49,7 @@ jobs:
         command: yarn release
         env:
           HACKAGE_TOKEN: ${{ secrets.HACKAGE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate documentation
         run: cabal v2-haddock --haddock-for-hackage --enable-documentation
       - name: Upload documentation to Hackage
