@@ -52,6 +52,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate documentation
         run: cabal v2-haddock --haddock-for-hackage --enable-documentation
+
+  docs:
+    runs-on: ubuntu-latest
+    needs: [upload]
+    steps:
       - name: Upload documentation to Hackage
         run: |
           cabal upload --publish \
