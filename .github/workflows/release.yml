@@ -44,9 +44,9 @@ jobs:
           node-version-file: .nvmrc
           cache: yarn
       - name: Install packages
-        command: yarn install --immutable
+        run: yarn install --immutable
       - name: Publish package to Hackage
-        command: yarn release
+        run: yarn release
         env:
           HACKAGE_TOKEN: ${{ secrets.HACKAGE_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,7 +55,6 @@ jobs:
       - name: Upload documentation to Hackage
         run: |
           cabal upload --publish \
-            --username "${{ secrets.HACKAGE_USERNAME }}" \
-            --password "${{ secrets.HACKAGE_PASSWORD }}" \
+            --token "${{ secrets.HACKAGE_API_KEY }}"
             --documentation \
             dist-newstyle/*-docs.tar.gz
