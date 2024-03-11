@@ -786,7 +786,7 @@ __metadata:
   resolution: "atomic-write@workspace:."
   dependencies:
     semantic-release: "npm:^23.0.2"
-    semantic-release-hackage: "npm:^1.0.1"
+    semantic-release-hackage: "npm:^1.0.2"
   languageName: unknown
   linkType: soft
 
@@ -3467,17 +3467,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release-hackage@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "semantic-release-hackage@npm:1.0.1"
+"semantic-release-hackage@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "semantic-release-hackage@npm:1.0.2"
   dependencies:
     axios: "npm:^1.6.7"
+    tslib: "npm:^2.6.2"
   peerDependencies:
     semantic-release: ">=22.0.0"
   peerDependenciesMeta:
     semantic-release:
       optional: false
-  checksum: 10c0/77b2b590af6ff04e9735718c46208226e68c5a614c5ef3472c0fe60674fd96a4b648fe1f9bffa4d0ef000170b5a73d3c486dcb373a28dc4ebef2d3938937db34
+  checksum: 10c0/602acf096db492bbb7b99d0f3dc7c5ab7a91b0887a7049e2f791ebdd246109ca4cb20ce1cde44cc0eea7fc7b0739046bcb8a71fee84503fc21f99608438cd26e
   languageName: node
   linkType: hard
 
@@ -3950,6 +3951,13 @@ __metadata:
   version: 3.0.0
   resolution: "treeverse@npm:3.0.0"
   checksum: 10c0/286479b9c05a8fb0538ee7d67a5502cea7704f258057c784c9c1118a2f598788b2c0f7a8d89e74648af88af0225b31766acecd78e6060736f09b21dd3fa255db
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "tslib@npm:2.6.2"
+  checksum: 10c0/e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb
   languageName: node
   linkType: hard
 
