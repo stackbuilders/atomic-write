@@ -1,7 +1,3 @@
-# The present workflow was made based on the following references:
-# - https://github.com/tfausak/strive/blob/main/.github/workflows/ci.yaml
-# - https://hackage.haskell.org/upload
----
 name: Release
 
 on:
@@ -12,8 +8,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
   upload:
     runs-on: ubuntu-latest
+    needs: [build]
     permissions:
       contents: write
       issues: write
@@ -44,9 +44,9 @@ jobs:
           node-version-file: .nvmrc
           cache: yarn
       - name: Install packages
-        command: yarn install --immutable
+        run: yarn install --immutable
       - name: Publish package to Hackage
-        command: yarn release
+        run: yarn release
         env:
           HACKAGE_TOKEN: ${{ secrets.HACKAGE_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,7 +55,6 @@ jobs:
       - name: Upload documentation to Hackage
         run: |
           cabal upload --publish \
-            --username "${{ secrets.HACKAGE_USERNAME }}" \
-            --password "${{ secrets.HACKAGE_PASSWORD }}" \
+            --token "${{ secrets.HACKAGE_API_KEY }}"
             --documentation \
             dist-newstyle/*-docs.tar.gz
