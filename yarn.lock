@@ -786,7 +786,7 @@ __metadata:
   resolution: "atomic-write@workspace:."
   dependencies:
     semantic-release: "npm:^23.0.2"
-    semantic-release-hackage: "npm:^1.0.3"
+    semantic-release-hackage: "npm:^1.0.4"
   languageName: unknown
   linkType: soft
 
@@ -3467,9 +3467,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release-hackage@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "semantic-release-hackage@npm:1.0.3"
+"semantic-release-hackage@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "semantic-release-hackage@npm:1.0.4"
   dependencies:
     axios: "npm:^1.6.7"
     tslib: "npm:^2.6.2"
@@ -3478,7 +3478,7 @@ __metadata:
   peerDependenciesMeta:
     semantic-release:
       optional: false
-  checksum: 10c0/3502a434d87f7ef02b1a701369fc76c205a79bef9edea74c598c20b5a042cf2b704d5b51c8ac9be4a065cac7b4d76abd1be446d5b9fd6fa668471f8f5baf84a0
+  checksum: 10c0/647f8bec473e1b11a4e7c7b50b73a931b88b9bfd94da59d4c9f337e3c877a8394a945cfccd3ef83293ef0a722d7bb8355ca5efa593d2aabc22c6b2420b70de0e
   languageName: node
   linkType: hard
 
