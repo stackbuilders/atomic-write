@@ -60,6 +60,7 @@ jobs:
       - name: Upload documentation to Hackage
         run: |
           cabal upload --publish \
-            --token "${{ secrets.HACKAGE_API_KEY }}"
+            --username "${{ secrets.HACKAGE_USERNAME }}" \
+            --password "${{ secrets.HACKAGE_PASSWORD }}" \
             --documentation \
             dist-newstyle/*-docs.tar.gz
