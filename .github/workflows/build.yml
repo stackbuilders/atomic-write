@@ -11,14 +11,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  haskell:
-    strategy:
-      matrix:
-        ghc:
-          - "8.10"
-          - "8.4.3"
-          - "9.4.7"
+  generate-matrix:
+    name: "Generate matrix from cabal"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     runs-on: ubuntu-latest
+    steps:
+      - name: Extract the tested GHC versions
+        id: set-matrix
+        uses: kleidukos/get-tested@v0.1.7.0
+        with:
+          cabal-file: atomic-write.cabal
+          ubuntu-version: latest
+          version: 0.1.7.0
+
+  build-and-test:
+    name: GHC ${{ matrix.ghc }} on ${{ matrix.os }}
+    needs: generate-matrix
+    strategy:
+      matrix: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
