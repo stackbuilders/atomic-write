@@ -5,6 +5,8 @@ Thank you for your interest in contributing to this Stack Builders' library. To 
 
 - Once the change has been discussed with the maintainer(s), feel free to open a Pull Request. Please include a link to the issue you're trying to solve, or a quick summary of the discussed changes.
 
+- This repo makes use of [semantic-release](https://github.com/semantic-release/semantic-release) with the [semantic-release-hackage](https://github.com/stackbuilders/semantic-release-hackage) puglin. PRs and commits should be following conventional commits formating to properly capture expected changes and determine the version to release.
+
 - If adding any new features that you think should be considered in the README file, please add that information in your Pull Request.
 
 - Once you get an approval from any of the maintainers, please merge your Pull Request. Keep in mind that some of our Stack Builders repositories use CI/CD pipelines, so you will need to pass all of the required checks before merging.
