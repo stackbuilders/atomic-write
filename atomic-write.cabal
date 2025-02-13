@@ -1,5 +1,5 @@
 name:                atomic-write
-version:             0.2.0.7
+version:             0.2.0.8
 synopsis:            Atomically write to a file
 homepage:            https://github.com/stackbuilders/atomic-write
 description:
