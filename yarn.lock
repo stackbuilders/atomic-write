@@ -897,18 +897,18 @@ __metadata:
   resolution: "atomic-write@workspace:."
   dependencies:
     semantic-release: "npm:^24.2.5"
-    semantic-release-hackage: "npm:^1.1.2"
+    semantic-release-hackage: "npm:^1.2.0"
   languageName: unknown
   linkType: soft
 
-"axios@npm:^1.6.7":
-  version: 1.6.7
-  resolution: "axios@npm:1.6.7"
+"axios@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "axios@npm:1.10.0"
   dependencies:
-    follow-redirects: "npm:^1.15.4"
+    follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/131bf8e62eee48ca4bd84e6101f211961bf6a21a33b95e5dfb3983d5a2fe50d9fffde0b57668d7ce6f65063d3dc10f2212cbcb554f75cfca99da1c73b210358d
+  checksum: 10c0/2239cb269cc789eac22f5d1aabd58e1a83f8f364c92c2caa97b6f5cbb4ab2903d2e557d9dc670b5813e9bcdebfb149e783fb8ab3e45098635cd2f559b06bd5d8
   languageName: node
   linkType: hard
 
@@ -1645,13 +1645,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.15.4":
-  version: 1.15.5
-  resolution: "follow-redirects@npm:1.15.5"
+"follow-redirects@npm:^1.15.6":
+  version: 1.15.9
+  resolution: "follow-redirects@npm:1.15.9"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10c0/418d71688ceaf109dfd6f85f747a0c75de30afe43a294caa211def77f02ef19865b547dfb73fde82b751e1cc507c06c754120b848fe5a7400b0a669766df7615
+  checksum: 10c0/5829165bd112c3c0e82be6c15b1a58fa9dcfaede3b3c54697a82fe4a62dd5ae5e8222956b448d2f98e331525f05d00404aba7d696de9e761ef6e42fdc780244f
   languageName: node
   linkType: hard
 
@@ -3806,18 +3806,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release-hackage@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "semantic-release-hackage@npm:1.1.2"
+"semantic-release-hackage@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "semantic-release-hackage@npm:1.2.0"
   dependencies:
-    axios: "npm:^1.6.7"
-    tslib: "npm:^2.6.2"
+    axios: "npm:^1.10.0"
+    tslib: "npm:^2.8.1"
   peerDependencies:
     semantic-release: ">=22.0.0"
   peerDependenciesMeta:
     semantic-release:
       optional: false
-  checksum: 10c0/181e816a914b1fcea7b6867ced2b13b64a07a64eeedb09d02e6e6f96e03c29242359cf138d36d06deddea499d721036d6c4e23ce071cb566d0b565b3990b89bf
+  checksum: 10c0/a9c1cf5604b6064627454cb16ea9208b1056f9768231cf3271035fa07bb6097ceea945f8eab1026462c55e77475c29a9135fab12dcdbec422a8730d23dcb6fde
   languageName: node
   linkType: hard
 
@@ -4333,10 +4333,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "tslib@npm:2.6.2"
-  checksum: 10c0/e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb
+"tslib@npm:^2.8.1":
+  version: 2.8.1
+  resolution: "tslib@npm:2.8.1"
+  checksum: 10c0/9c4759110a19c53f992d9aae23aac5ced636e99887b51b9e61def52611732872ff7668757d4e4c61f19691e36f4da981cd9485e869b4a7408d689f6bf1f14e62
   languageName: node
   linkType: hard
 
