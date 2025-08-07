@@ -12,6 +12,8 @@
     "release": "semantic-release"
   },
   "devDependencies": {
+    "braces": "^3.0.3",
+    "form-data": "^4.0.4",
     "semantic-release": "^24.2.5",
     "semantic-release-hackage": "^1.2.0"
   },
